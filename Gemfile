@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem "spree", :git => "https://github.com/tka/spree.git"
+
 gem 'sqlite3'
 
 group :test do
