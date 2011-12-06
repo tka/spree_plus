@@ -14,7 +14,7 @@ module SpreePlus
         curr_page = manage_pagination && keywords ? 1 : page
 
         @products = @products_scope.includes([:images, :master])
-        Spree::Variant.where(:product_id => @products ).page(curr_page).per(per_page)
+        Spree::Variant.active.where(:product_id => @products, :is_show_in_list_page => true ).page(curr_page).per(per_page)
       end
 
       def method_missing(name)

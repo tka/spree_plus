@@ -12,11 +12,13 @@
 <ul id="products" class="product-listing" data-hook>
   <% products.each do |product| %>
     <% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
-      <li id="product_<%= product.id %>" data-hook="products_list_item">
-        <%= link_to product.name, product_path(product.product), :class => 'info' %>
-        <%= link_to small_image( product.images.count > 0 ? product : product.product ), product_path(product.product) %>
-        <span class="price selling"><%= product_price(product) %></span>
-      </li>
+        <li id="product_<%= product.id %>" data-hook="products_list_item">
+        <% product_params ={}
+           product.option_values.each{|x| product_params["option_types[#{x.option_type_id}]"] = x.id} %>
+           <%= link_to product.name, product_path(product.product, product_params), :class => 'info' %>
+           <%= link_to small_image( product.images.count > 0 ? product : product.product ), product_path(product.product, product_params)%>
+           <span class="price selling"><%= product_price(product) %></span>
+       </li>
     <% end %>
   <% end %>
 </ul>
