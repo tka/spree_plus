@@ -23,10 +23,10 @@ $(function(){
     var update_ui=function(){
         filter = ""
         img_filter = ""
-        $('#product_option_types input[type=radio]:checked').each(function(){
-            filter+= "[data-" +this.name.replace(/_/g,'-')+"="+this.value+"]"
+        $('#product_option_types input[type=radio]:checked, #product_option_types select').each(function(){
+            filter+= "[data-" +this.name.replace(/_/g,'-')+"="+$(this).val()+"]"
             if(!$(this).data("has-same-product-image")){
-                img_filter+= "[data-" +this.name.replace(/_/g,'-')+"="+this.value+"]"
+                img_filter+= "[data-" +this.name.replace(/_/g,'-')+"="+$(this).val()+"]"
             }
         })
         $('#product-thumbnails li').hide();
@@ -42,6 +42,7 @@ $(function(){
     }
 
     $('#product_option_types input[type=radio]').on('click', update_ui);
+    $('#product_option_types select').on('change', update_ui);
     add_image_handlers();
     update_ui();
     

@@ -18,7 +18,12 @@
 
                         <li><label><%=option_type.presentation%></label>
                             <% if option_type.display_type == "select" %>
-                                <%= select_tag "option_type_#{option_type.id}", options_from_collection_for_select(option_type.option_values, :id, :presentation, params[:option_types] && params[:option_types][option_type.id.to_s]) %>
+                                <%= select_tag( "option_type_#{option_type.id}", 
+                                               options_from_collection_for_select(option_type.option_values, 
+                                                                                  :id,
+                                                                                  :presentation,
+                                                                                  params[:option_types] && params[:option_types][option_type.id.to_s]),
+                                               :"data-has-same-product-image" => option_type.has_same_product_image ) %>
                                 <% option_type.option_values.each do |option_value|%>
                                 <% end %>
                             <% else %> 
