@@ -88,7 +88,7 @@ $(function(){
             on_hand = parseInt(on_hand, 10);
             var options="";
             for(var i=0; i<10 && i<on_hand; i++){
-                options+='<option value='+(i+1)+'">'+(i+1)+'</option>';
+                options+='<option value="'+(i+1)+'">'+(i+1)+'</option>';
             }
             $('#quantity').html(options)
         }else{
