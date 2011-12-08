@@ -1,4 +1,6 @@
 $(function(){
+    var l =function(o){ if(window.console){window.console.log(o)}};
+
     var add_image_handlers = function() {
         $("#main-image").data('selectedThumb', $('#main-image img').attr('src'));
         $('ul.thumbnails li').eq(0).addClass('selected');
@@ -21,7 +23,6 @@ $(function(){
     };
 
     var update_ui=function(){
-        var l =function(o){ if(window.console){window.console.log(o)}};
 
         var filter = ""
         var img_filter = ""
@@ -31,7 +32,6 @@ $(function(){
 
         for(var i=0; i < option_type_inputs.length; i++){
             var input = option_type_inputs[i];
-            var current_filter = "[data-" + input.name.replace(/_/g,'-')+"="+$(input).val()+"]";
 
 
             if(i > target_input_index ){
@@ -59,12 +59,7 @@ $(function(){
                     });
                 }
             }
-            /*
-            l("=====================");
-            l(filter);
-            l(input == this);
-            l($("div[data-hook=inside_product_cart_form] input[type=radio]"+filter));
-            */
+            var current_filter = "[data-" + input.name.replace(/_/g,'-')+"="+$(input).val()+"]";
             filter += current_filter 
             if(!$(input).data("has-same-product-image")){
                 img_filter+= current_filter
@@ -80,11 +75,30 @@ $(function(){
         $('#main-image img').attr('src', newImg);
         $("#main-image").data('selectedThumb', newImg);
         $("#main-image").data('selectedThumbId', thumb.attr('id'));
-        $("div[data-hook=inside_product_cart_form] input[type=radio]"+filter).trigger('click')
+        $("ul#product-variant-fields input[type=radio]").attr('checked', false);
+        if( $("ul#product-variant-fields input[type=radio]"+filter).length ==1 ){
+            $("ul#product-variant-fields input[type=radio]"+filter).trigger('click');
+        }
+        set_quantity_ui();
+    }
+    
+    var set_quantity_ui = function(){
+        var on_hand = $("ul#product-variant-fields input[type=radio]:checked").data('on-hand');
+        if(typeof(on_hand) != "undefined" && parseInt(on_hand, 10) >0 ){
+            on_hand = parseInt(on_hand, 10);
+            var options="";
+            for(var i=0; i<10 && i<on_hand; i++){
+                options+='<option value='+(i+1)+'">'+(i+1)+'</option>';
+            }
+            $('#quantity').html(options)
+        }else{
+            $('#quantity').html('<option value="0">請選擇商品</option>');
+        }
     }
 
     $('#product_option_types input[type=radio]').on('click', update_ui);
     $('#product_option_types select').on('change', update_ui);
+    $("ul#product-variant-fields input[type=radio]").on('click', set_quantity_ui);
     add_image_handlers();
     update_ui();
 

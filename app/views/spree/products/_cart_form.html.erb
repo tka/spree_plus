@@ -38,7 +38,7 @@
                         </li>
                     <% end %>
                 </ul>
-                <ul style="display:none">
+                <ul id="product-variant-fields">
                     <% has_checked = false
                     @product.variants.active.each_with_index do |v,index|
                         next if v.option_values.empty? || (!v.in_stock && !Spree::Config[:show_zero_stock_products])
@@ -60,8 +60,8 @@
             </div>
         <% end%>
         <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
-            <%= text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
-                1, :class => 'title', :size => 3 %>
+            <%= select_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
+                options_for_select([""]), :class => 'title'%>
                 &nbsp;
                 <%= button_tag :class => 'large primary', :id => 'add-to-cart-button' do %>
                     <%= image_tag('icons/add-to-cart.png') + t(:add_to_cart) %>

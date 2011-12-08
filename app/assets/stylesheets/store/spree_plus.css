@@ -1,3 +1,6 @@
 /*
  *= require store/spree_core
 */
+#product-variant-fields{
+  display: none;
+  }
