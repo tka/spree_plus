@@ -18,7 +18,7 @@
            variant.option_values.each{|x| variant_params["option_types[#{x.option_type_id}]"] = x.id} %>
            <%= link_to variant.name, product_path(variant.product, variant_params), :class => 'info' %>
            <%= link_to small_image( variant.first_image_variant || variant.product), product_path(variant.product, variant_params)%>
-           <span class="price selling"><%= product_price(variant) %></span>
+           <span class="price selling"><%= number_to_currency(variant.price) %></span>
        </li>
     <% end %>
   <% end %>
