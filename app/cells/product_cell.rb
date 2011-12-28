@@ -6,8 +6,8 @@ class ProductCell < Cell::Rails
     render
   end
 
-  def size_descriptions(args)
-    @size_descriptions = args[:product].labels
+  def links(args)
+    @links = args[:product].labels
     render
   end
 

@@ -9,8 +9,8 @@ module Spree
                             :join_table => "spree_product_additional_instructions_products", 
                             :association_foreign_key => :product_additional_instruction_id
 
-    has_and_belongs_to_many :size_descriptions,
-                            :class_name => "Spree::ProductSizeDescription", 
+    has_and_belongs_to_many :links,
+                            :class_name => "Spree::ProductLink", 
                             :join_table => "spree_product_additional_instructions_products", 
                             :association_foreign_key => :product_additional_instruction_id
 
