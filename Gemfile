@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem "spree", :git => "https://github.com/tka/spree.git"
 
 gem 'sqlite3'
+gem 'cells'
 
 group :test do
   gem 'capybara', '1.0.1'

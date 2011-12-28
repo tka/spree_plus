@@ -1,5 +1,21 @@
 module Spree
   Product.class_eval do
+    has_and_belongs_to_many :additional_instructions, 
+                            :class_name => "Spree::ProductAdditionalInstruction",
+                            :join_table => "spree_product_additional_instructions_products"
+
+    has_and_belongs_to_many :labels,
+                            :class_name => "Spree::ProductLabel", 
+                            :join_table => "spree_product_additional_instructions_products", 
+                            :association_foreign_key => :product_additional_instruction_id
+
+    has_and_belongs_to_many :size_descriptions,
+                            :class_name => "Spree::ProductSizeDescription", 
+                            :join_table => "spree_product_additional_instructions_products", 
+                            :association_foreign_key => :product_additional_instruction_id
+
+
+
     after_save :update_variants_status
 
     def update_variants_status
