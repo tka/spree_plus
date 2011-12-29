@@ -1,10 +1,10 @@
 <%= render :partial => 'spree/admin/shared/product_sub_menu' %>
 
-<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @label } %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @link } %>
 
-<%= form_for @label, :url => admin_label_path(@label) do |f| %>
+<%= form_for @link, :url => admin_link_path(@link) do |f| %>
     <fieldset>
-        <legend><%= t(:edit_label) %></legend>
+        <legend><%= t(:edit_link) %></legend>
         <%= render :partial => 'form', :locals => { :f => f } %>
         <p class="form-buttons" data-hook="buttons">
             <%= button t(:update) %> <%= t(:or) %> <%= link_to t(:cancel), :back %>

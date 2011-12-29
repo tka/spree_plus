@@ -17,6 +17,7 @@ module Spree
       def create 
         @label = Spree::ProductLabel.new(params[:product_label])
         if @label.save
+          redirect_to :index, :notice => 'DONE!'
         else
           render :new
         end

@@ -1,0 +1,31 @@
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<div class="toolbar" data-hook="toolbar">
+  <ul class="actions">
+    <li id="new_ot_link">
+      <%= button_link_to t(:new_link), new_admin_link_url, { :icon => 'add', :id => 'new_link'} %>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+<h1><%= t(:links) %></h1>
+
+<div id="new_link"></div>
+
+<table class="index sortable" id="listing_links" data-hook>
+  <tr data-hook="option_header">
+    <th><%= t(:name) %></th>
+    <th></th>
+  </tr>
+  <% @links.each do |link| %>
+    <tr id="<%= dom_id link %>" data-hook="option_row">
+      <td><span class="handle"></span> <%= link.name %></td>
+      <td class="actions">
+        <%= link_to t(:edit), edit_admin_link_path( link ), :class => 'admin_edit_link' %>
+        &nbsp;
+        <%= link_to t(:delete), admin_link_path( link ), :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>

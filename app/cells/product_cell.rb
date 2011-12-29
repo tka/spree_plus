@@ -7,7 +7,7 @@ class ProductCell < Cell::Rails
   end
 
   def links(args)
-    @links = args[:product].labels
+    @links = args[:product].links
     render
   end
 
