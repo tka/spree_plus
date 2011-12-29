@@ -17,7 +17,7 @@ module Spree
       def create 
         @link = Spree::ProductLink.new(params[:product_link])
         if @link.save
-          redirect_to :index, :notice => 'DONE!'
+          redirect_to spree.admin_links_path, :notice => 'DONE!'
         else
           render :new
         end
