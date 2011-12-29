@@ -21,6 +21,40 @@ module Spree
           render :new
         end
       end
+
+      def update
+        @label = Spree::ProductLabel.find(params[:id])
+        if @label.update_attributes(params[:product_label])
+          redirect_to :back, :notice => 'DONE!'
+        else
+          render :edit
+        end
+      end
+
+      def destroy
+        @label = Spree::ProductLabel.find(params[:id])
+        @label.destroy
+        redirect_to :back, :notice => 'DONE!'
+      end
+      
+      #  for product
+      def available
+        @labels = Spree::ProductLabel.all
+        @product = Spree::Product.find_by_permalink!(params[:product_id])
+      end
+
+      def select
+        @product = Spree::Product.find_by_permalink!(params[:product_id])
+        @label = Spree::ProductLabel.find(params[:id])
+        @product.labels << @label
+      end
+
+      def remove
+        @product = Spree::Product.find_by_permalink!(params[:product_id])
+        @label = Spree::ProductLabel.find(params[:id])
+        @product.labels.delete(@label)
+      end
+
     end
   end
 end

@@ -1,7 +1,5 @@
-<h1>
-  Product#label
-</h1>
-
-<p>
-  Find me in app/cells/product/label.html.erb
-</p>
+<div id="product_lables">
+    <%@labels.each do |label| %>
+        <%=raw label.content%>
+    <% end %>
+</div>
