@@ -1,7 +1,7 @@
 Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :products do
-      
+
       resources :labels do
         collection do
           get :available
@@ -24,7 +24,11 @@ Spree::Core::Engine.routes.draw do
 
     end
 
-    resources :labels
-    resources :links
+    resources :labels do
+      post :update_positions, :on => :collection
+    end
+    resources :links do
+      post :update_positions, :on => :collection
+    end
   end
 end 

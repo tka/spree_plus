@@ -9,11 +9,11 @@ module Spree
       def new
         @link = Spree::ProductLink.new
       end
-      
+
       def edit
         @link = Spree::ProductLink.find(params[:id])
       end
-      
+
       def create 
         @link = Spree::ProductLink.new(params[:product_link])
         if @link.save
@@ -37,7 +37,7 @@ module Spree
         @link.destroy
         redirect_to :back, :notice => 'DONE!'
       end
-      
+
       #  for product
       def available
         @links = Spree::ProductLink.all
@@ -48,13 +48,32 @@ module Spree
         @product = Spree::Product.find_by_permalink!(params[:product_id])
         @link = Spree::ProductLink.find(params[:id])
         @product.links << @link
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js  { render :text => 'Ok' }
+        end 
       end
 
       def remove
         @product = Spree::Product.find_by_permalink!(params[:product_id])
         @link = Spree::ProductLink.find(params[:id])
         @product.links.delete(@link)
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js  { render :text => 'Ok' }
+        end 
       end
+
+      def update_positions
+        params[:positions].each do |id, index|
+          Spree::ProductLink.where(:id => id).update_all(:position => index)
+        end 
+
+        respond_to do |format|
+          format.html { redirect_to admin_links_url() }
+          format.js  { render :text => 'Ok' }
+        end 
+      end 
 
     end
   end

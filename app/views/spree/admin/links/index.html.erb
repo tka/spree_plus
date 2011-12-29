@@ -19,7 +19,7 @@
     <th></th>
   </tr>
   <% @links.each do |link| %>
-    <tr id="<%= dom_id link %>" data-hook="option_row">
+    <tr id="link_<%= link.id %>" data-hook="option_row">
       <td><span class="handle"></span> <%= link.name %></td>
       <td class="actions">
         <%= link_to t(:edit), edit_admin_link_path( link ), :class => 'admin_edit_link' %>

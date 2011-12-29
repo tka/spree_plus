@@ -19,7 +19,7 @@
     <th></th>
   </tr>
   <% @labels.each do |label| %>
-    <tr id="<%= dom_id label %>" data-hook="option_row">
+    <tr id="label_<%= label.id %>" data-hook="option_row">
       <td><span class="handle"></span> <%= label.name %></td>
       <td class="actions">
         <%= link_to t(:edit), edit_admin_label_path( label ), :class => 'admin_edit_label' %>

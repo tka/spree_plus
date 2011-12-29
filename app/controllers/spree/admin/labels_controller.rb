@@ -48,13 +48,32 @@ module Spree
         @product = Spree::Product.find_by_permalink!(params[:product_id])
         @label = Spree::ProductLabel.find(params[:id])
         @product.labels << @label
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js  { render :text => 'Ok' }
+        end 
       end
 
       def remove
         @product = Spree::Product.find_by_permalink!(params[:product_id])
         @label = Spree::ProductLabel.find(params[:id])
         @product.labels.delete(@label)
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js  { render :text => 'Ok' }
+        end 
       end
+
+      def update_positions
+        params[:positions].each do |id, index|
+          Spree::ProductLabel.where(:id => id).update_all(:position => index)
+        end 
+
+        respond_to do |format|
+          format.html { redirect_to admin_labels_url() }
+          format.js  { render :text => 'Ok' }
+        end 
+      end 
 
     end
   end
