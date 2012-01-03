@@ -1,0 +1,51 @@
+<!doctype html>
+<!--[if lt IE 8 ]><html class="ie"><![endif]-->
+    <!--[if (gte IE 8)|!(IE)]><!--><html><!--<![endif]-->
+        <head data-hook="inside_head">
+            <meta charset="UTF-8">
+            <%= render :partial => 'spree/shared/head' %>
+        </head>
+        <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
+
+            <header id="header" class="clearfix">
+            <div class="inner">
+                <h1 id="logo">
+                    <%= logo %>
+                </h1>
+                <div id="nav-bar" class="topnav clearfix">
+                    <div class="search block" id="search-bar">
+                        <%= render :partial => "spree/shared/search"%>
+                    </div>
+                    <%= render :partial => "spree/shared/login_bar"%>
+                    <div class="cart block">
+                        <%= link_to_cart %>
+                    </div>
+                </div>
+            </div>
+            </header>
+            <%= spreeplus_breadcrumbs(@taxon) %>
+
+            <div id="container" class="has-sidebar clearfix" data-hook>
+                <div class="inner">
+                    <% if content_for?(:sidebar) %>
+                        <aside id="sidebar" data-hook>
+                            <%= yield :sidebar %>
+                        </aside>
+                    <% end %>
+
+                    <div id="main" data-hook class="inventory">
+                        <%= flash_messages %>
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
+
+            <div id="footer" data-hook>
+                <div id="footer-left" data-hook>
+                    <p><%= t(:powered_by) %> <%= link_to 'Spree', 'http://spreecommerce.com/' %></p>
+                </div>
+                <div id="footer-right" data-hook></div>
+            </div>
+            <%= render :partial => 'spree/shared/google_analytics' %>
+        </body>
+    </html>

@@ -2,3 +2,13 @@
 en:
   new_label: New Label
   new_link: New Link
+  product:
+    quantity: Product Quantity
+  sort_by:
+    sort_by: Sort by
+    price_asc: Price lowest first
+    price_desc: Price highest first
+    available_desc: Newest
+  display:
+    thumb: Thumb
+    list:  List

@@ -14,7 +14,7 @@ module SpreePlus
         curr_page = manage_pagination && keywords ? 1 : page
 
         @products = @products_scope.includes([:images, :master])
-        @variants=Spree::Variant.active.where(:product_id => @products, :is_show_in_list_page => true ).page(curr_page).per(per_page)
+        @variants=Spree::Variant.includes([:product]).active.where(:product_id => @products, :is_show_in_list_page => true ).order(@properties[:order]).page(curr_page).per(per_page)
       end
 
       def method_missing(name)
@@ -43,8 +43,14 @@ module SpreePlus
 
         per_page = params[:per_page].to_i
         @properties[:per_page] = per_page > 0 ? per_page : Spree::Config[:products_per_page]
-        @properties[:page] = (params[:page].to_i <= 0) ? 1 : params[:page].to_i
-
+        @properties[:page]  = (params[:page].to_i <= 0) ? 1 : params[:page].to_i
+        @properties[:order] = case params[:order_by]
+                              when  "price.desc" then "price desc"
+                              when  "price.asc" then "price asc"
+                              when  "available_on.desc" then "spree_products.available_on desc"
+                              when  "available_on.asc" then "spree_products.available_on asc"
+                              else "price asc"
+                              end
         if !params[:order_by_price].blank?
           @product_group = Spree::ProductGroup.new.from_route([params[:order_by_price] + '_by_master_price'])
         elsif params[:product_group_name]

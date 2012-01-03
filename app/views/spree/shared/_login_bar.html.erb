@@ -1,0 +1,10 @@
+<div class="account block">
+    <% if current_user %>
+        <%= link_to t(:my_account), spree.account_path, :class => 'login' %>
+        <%= link_to t(:logout), spree.destroy_user_session_path %>
+    <% else %>
+        <%= link_to t(:log_in), spree.login_path, :class => "login" %>
+    <% end %>
+</div>
+
+

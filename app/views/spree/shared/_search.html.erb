@@ -1,0 +1,5 @@
+<%= form_tag products_url, :method => :get do %>
+  <%= hidden_field_tag :taxon, '' %>
+  <%= text_field_tag :keywords, params[:keywords], :class =>"text", :placeholder => t(:search) %>
+  <%= submit_tag t(:search), :name => nil, :class => "submit" %>
+<% end %>

@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_core', '>= 1.0.0.beta'
   s.add_development_dependency 'rspec-rails', '~> 2.7'
+  s.add_development_dependency 'cells'
 end

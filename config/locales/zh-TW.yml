@@ -1,0 +1,14 @@
+---
+zh-TW:
+  new_label: 新標籤
+  new_link: 新連結
+  product:
+    quantity: 商品品數量
+  sort_by:
+    sort_by: 排序
+    price_asc: 價格由低至高
+    price_desc: 價格由高至低
+    available_desc: 依上架時間
+  display:
+    thumb: 縮圖
+    list:  列表

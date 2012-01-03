@@ -1,0 +1,10 @@
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<title><%= title %></title>
+<%== meta_data_tags %>
+<%= favicon_link_tag image_path('favicon.ico') %>
+<%= stylesheet_link_tag 'store/all', :media => 'screen' %>
+<%= csrf_meta_tags %>
+<!-- html5shiv http://code.google.com/p/html5shiv/ -->
+<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<%= javascript_include_tag 'store/all'%>
+<%= yield :head %>

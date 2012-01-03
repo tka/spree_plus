@@ -4,7 +4,7 @@ gem "spree", :git => "https://github.com/tka/spree.git"
 
 gem 'sqlite3'
 gem 'cells'
-
+gem "compass", :git => "https://github.com/chriseppstein/compass.git"
 group :test do
   gem 'capybara', '1.0.1'
   gem 'ffaker'

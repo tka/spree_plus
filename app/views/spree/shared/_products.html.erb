@@ -1,34 +1,46 @@
-<%
-  variants = products # DIRTY HACK
-  paginated_variants = @searcher.variants if params.key?(:keywords)
-  paginated_variants ||= variants
-%>
-<% if variants.empty? %>
-  <%= t(:no_variants_found) %>
-<% elsif params.key?(:keywords) %>
-  <h3><%= t(:search_results, :keywords => h(params[:keywords])) %></h3>
-<% end %>
+<%= render :partial => 'spree/shared/products_nav'%>
 
-<% if variants.any? %>
-<ul id="products" class="product-listing" data-hook>
-  <% variants.each do |variant| %>
-    <% if Spree::Config[:show_zero_stock_products] || variant.in_stock %>
-        <li id="variant_<%= variant.id %>" data-hook="variants_list_item">
-        <% variant_params ={}
-           variant.option_values.each{|x| variant_params["option_types[#{x.option_type_id}]"] = x.id} %>
-           <%= link_to variant.name, product_path(variant.product, variant_params), :class => 'info' %>
-           <%= link_to small_image( variant.first_image_variant || variant.product), product_path(variant.product, variant_params)%>
-           <span class="price selling"><%= number_to_currency(variant.price) %></span>
-       </li>
+<div class="bd">
+    <%
+      variants = products # DIRTY HACK
+      paginated_variants = @searcher.variants if params.key?(:keywords)
+      paginated_variants ||= variants
+    %>
+    <% if variants.empty? %>
+      <%= t(:no_variants_found) %>
+    <% elsif params.key?(:keywords) %>
+      <h3><%= t(:search_results, :keywords => h(params[:keywords])) %></h3>
     <% end %>
-  <% end %>
-</ul>
-<% end %>
-
-<hr class="space" />
+    
+    <% if variants.any? %>
+        <ul id="products" class="inventory-<%= params[:display] || 'thumb'%> clearfix" data-hook>
+      <% variants.each do |variant| %>
+        <% if Spree::Config[:show_zero_stock_products] || variant.in_stock %>
+            <% variant_params = {} %>
+            <% variant.option_values.each{|x| variant_params["option_types[#{x.option_type_id}]"] = x.id} %>
+            <li id="variant_<%= variant.id %>" data-hook="variants_list_item">
+                <%if params[:display] == 'list'%>
+                    <%= link_to ( small_image( variant.first_image_variant || variant.product)),
+                        product_path(variant.product, variant_params), :class=>"photo-thumb" %>
+                    <div class="list-intro">
+                        <h3><%=link_to variant.name,  product_path(variant.product, variant_params) %></h3>
+                        <p><%= truncate variant.product.description, :length => 200%></p>
+                    </div>
+                    <strong class="price"><%= number_to_currency(variant.price)%></strong>
+                <% else %>
+                    <%= link_to ( small_image( variant.first_image_variant || variant.product) + 
+                                 variant.name + 
+                                 raw("<strong>#{number_to_currency(variant.price)}</strong>") ),
+                                 product_path(variant.product, variant_params) %>
+                <% end %>
+           </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <% end %>
+</div>
 
 <% if paginated_variants.respond_to?(:num_pages)
       params.delete(:search)
       params.delete(:taxon)
-%><%= paginate paginated_variants %><% end %>
-<hr class="space" />
+      %><%= paginate paginated_variants, :theme => 'store' %><% end %>
