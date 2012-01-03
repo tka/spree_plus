@@ -39,13 +39,8 @@
                     </div>
                 </div>
             </div>
-
-            <div id="footer" data-hook>
-                <div id="footer-left" data-hook>
-                    <p><%= t(:powered_by) %> <%= link_to 'Spree', 'http://spreecommerce.com/' %></p>
-                </div>
-                <div id="footer-right" data-hook></div>
-            </div>
+            
+            <%= render :partial => "spree/shared/store_footer"%>
             <%= render :partial => 'spree/shared/google_analytics' %>
         </body>
     </html>
