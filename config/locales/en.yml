@@ -4,6 +4,8 @@ en:
   new_link: New Link
   product:
     quantity: Product Quantity
+    specification: Specification
+    introduction: Introduction
   sort_by:
     sort_by: Sort by
     price_asc: Price lowest first

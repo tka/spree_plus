@@ -4,6 +4,8 @@ zh-TW:
   new_link: 新連結
   product:
     quantity: 商品品數量
+    specification: 商品規格
+    introduction: 商品說明與介紹
   sort_by:
     sort_by: 排序
     price_asc: 價格由低至高

@@ -1,9 +1,15 @@
+<hgroup>
+<h4><%=t('product.specification')%></h4> 
+</hgroup>
 <% unless @product_properties.empty? %>
-<dl id="product-properties" class="table-display" data-hook>
-<% for product_property in @product_properties 
-    css_class = cycle('even', 'odd') %>
-  <dt class="<%= css_class %>"><%= product_property.property.presentation %></dt>
-  <dd class="<%= css_class %>"><%= product_property.value %></dd>
-<% end %>
-</dl>
+    <table id="product_properties">
+        <tbody>
+            <% for product_property in @product_properties %>
+                <tr>
+                    <th><%= product_property.property.presentation %></th>
+                    <td><%= product_property.value %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 <% end %>

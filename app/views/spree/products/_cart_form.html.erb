@@ -1,5 +1,5 @@
 <%= form_for :order, :url => populate_orders_url do |f| %>
-    <div data-hook="inside_product_cart_form">
+    <div class="bd"  data-hook="inside_product_cart_form">
 
         <% if @product.price %>
             <div class="price row clearfix" id="product_price" data-hook="product_price">
@@ -15,7 +15,7 @@
                         <div class="row clearfix">
                         <span class="label"><%=option_type.presentation%></span>
                             <% if option_type.display_type == "select" %>
-
+                                
                                 <%= select_tag( "option_type_#{option_type.id}", 
                                                options_from_collection_for_select(option_type.option_values, 
                                                                                   :id,
@@ -23,8 +23,6 @@
                                                                                   params[:option_types] && params[:option_types][option_type.id.to_s]),
                                                :prompt => '',
                                                :"data-has-same-product-image" => option_type.has_same_product_image ) %>
-                                <% option_type.option_values.each do |option_value|%>
-                                <% end %>
                             <% else %> 
                                 <ul class="clearfix product_option_values">
                                 <% option_type.option_values.each do |option_value|%>
@@ -66,14 +64,15 @@
                 options_for_select( (1..( Spree::Config[:allow_backorders] ? 10 : @product.on_hand ) ).to_a[0,10] )%>
         </div>
         <% end %>
-        
+    </div>
+    <div class="ft clearfix">
         <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
-            <%= button_tag :class => 'large primary', :id => 'add-to-cart-button' do %>
-                <%= image_tag('icons/add-to-cart.png') + t(:add_to_cart) %>
+            <%= button_tag :class => 'button-orange', :id => 'add-to-cart-button' do %>
+                <span></span><%= t(:add_to_cart) %>
             <% end %>
         <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
         <% end %>
-
-        </div>
-    <% end %>
+        <%= render_cell :product, :links, :product => @product%>
+    </div>
+<% end %>
