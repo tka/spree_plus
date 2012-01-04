@@ -23,7 +23,7 @@
                 </div>
             </div>
             </header>
-            <%= spreeplus_breadcrumbs(@taxon) %>
+            <%= spreeplus_breadcrumbs(@taxon || (@product && @product.taxons.first)) %>
 
             <div id="container" class="has-sidebar clearfix" data-hook>
                 <div class="inner">
@@ -32,11 +32,8 @@
                             <%= yield :sidebar %>
                         </aside>
                     <% end %>
-
-                    <div id="main" data-hook class="inventory">
                         <%= flash_messages %>
                         <%= yield %>
-                    </div>
                 </div>
             </div>
             

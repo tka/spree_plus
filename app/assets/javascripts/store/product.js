@@ -20,6 +20,7 @@ $(function(){
         $('ul.thumbnails').delegate('li', 'mouseleave', function(event) {
             $('#main-image img').attr('src', $("#main-image").data('selectedThumb'));
         }); 
+        
     };
 
     var update_ui=function(){
@@ -79,7 +80,16 @@ $(function(){
         if( $("ul#product-variant-fields input[type=radio]"+filter).length ==1 ){
             $("ul#product-variant-fields input[type=radio]"+filter).trigger('click');
         }
+
+        $('ul.product_option_values li').removeClass('selected');
+        $('ul.product_option_values li').each(function(){
+            if($('input[type=radio]:checked', this).length > 0){
+                $(this).addClass('selected');
+            }
+        })
+        
         set_quantity_ui();
+        return false;
     }
     
     var set_quantity_ui = function(){
@@ -97,9 +107,11 @@ $(function(){
     }
 
     $('#product_option_types input[type=radio]').on('click', update_ui);
+    $('#product_option_types a.radio-btn').on('click', function(){ $(this).next('input[type=radio]').prop('checked',true).trigger('click'); });
     $('#product_option_types select').on('change', update_ui);
     $("ul#product-variant-fields input[type=radio]").on('click', set_quantity_ui);
     add_image_handlers();
     update_ui();
+    $('#product_option_types input[type=radio]').hide();
 
 })

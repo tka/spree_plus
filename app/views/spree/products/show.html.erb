@@ -1,26 +1,40 @@
-<div data-hook="product_show">
-  <% @body_id = 'product-details' %>
-  <h1><%= accurate_title %></h1>
-
-  <div id="product-images" data-hook="product_images">
-    <div id="main-image" data-hook>
-      <%= render :partial => 'image' %>
+<% content_for :sidebar do %>
+    <div data-hook="homepage_sidebar_navigation">
+        <%= render :partial => 'spree/shared/taxonomies' %>
     </div>
-    <div id="thumbnails" data-hook>
-      <%= render :partial => 'thumbnails', :locals => { :product => @product } %>
+<% end %>
+<article data-hook="product_show">
+<section class="product-info clearfix">
+<div class="gallery">
+    <div id="product-images" data-hook="product_images">
+        <div id="main-image" data-hook>
+            <%= render :partial => 'image' %>
+        </div>
+        <div id="thumbnails" data-hook>
+            <%= render :partial => 'thumbnails', :locals => { :product => @product } %>
+        </div>
     </div>
-  </div>
+</div>
+<div class="info">
+    <div class="hd">
+        <h2 class="product-title"><%= accurate_title %></h2>
+        <%= render_cell :product, :labels, :product => @product%>
+        <div class="row clearfix"><span class="label">商品編號</span><%= @product.sku%></div>
+    </div>
+    <div class="bd">
+        <div id="cart-form" data-hook="cart_form">
+            <%= render :partial => 'cart_form' %>
+        </div>
+    </div>
+</div>
+</section>
 
-  <div id="cart-form" data-hook="cart_form">
-    <%= render :partial => 'cart_form' %>
-  </div>
-
-  <div id="product-description" data-hook="product_description">
+<section id="product-description" class="product-introduction clearfix" data-hook="product_description">
     <%= product_description(@product) rescue t(:product_has_no_description) %>
     <div data-hook="product_properties">
-      <%= render :partial => 'properties' %>
+        <%= render :partial => 'properties' %>
     </div>
-  </div>
-</div>
+</section>
+</article>
 
-<%= render :partial => 'taxons' %>
+<%# render :partial => 'taxons' %>

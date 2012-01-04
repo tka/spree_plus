@@ -2,22 +2,20 @@
     <div data-hook="inside_product_cart_form">
 
         <% if @product.price %>
-            <div data-hook="product_price">
-                <dl id="product-price">
-                    <dt><%= t(:price) %></dt>
-                    <dd><span class="price selling"><%= number_to_currency(@product.price) %></span></dd>
-                </dl>
+            <div class="price row clearfix" id="product_price" data-hook="product_price">
+                <span class="label"><%= t(:price) %></span>
+                <strong><%= number_to_currency(@product.price) %></strong>
             </div>
         <% end %>
 
         <% if @product.has_variants? %>
             <div id="product-variants">
-                <h2><%= t(:variants) %></h2>
-                <ul class="option_tyeps" id="product_option_types">
+                <div class="option_tyeps" id="product_option_types">
                     <% @product.option_types.each do |option_type| %>
-
-                        <li><label><%=option_type.presentation%></label>
+                        <div class="row clearfix">
+                        <span class="label"><%=option_type.presentation%></span>
                             <% if option_type.display_type == "select" %>
+
                                 <%= select_tag( "option_type_#{option_type.id}", 
                                                options_from_collection_for_select(option_type.option_values, 
                                                                                   :id,
@@ -28,16 +26,17 @@
                                 <% option_type.option_values.each do |option_value|%>
                                 <% end %>
                             <% else %> 
-                                <ul>
+                                <ul class="clearfix product_option_values">
                                 <% option_type.option_values.each do |option_value|%>
-                                    <li><label>
-                                            <%= radio_button_tag "option_type_#{option_type.id}",option_value.id, (params[:option_types] && params[:option_types][option_type.id.to_s] == option_value.id.to_s), :"data-has-same-product-image" => option_type.has_same_product_image%><span><%=image_tag option_value.image.mini_url if option_value.image%><%=option_value.presentation%></span></label></li>
+                                    <li class="<%= option_value.image ? 'color' : 'size'%>">
+                                        <a href="javascript:;"  class="radio-btn" title="<%=option_value.presentation%>"><span></span><%= option_value.image ? image_tag(option_value.image.mini_url) : option_value.presentation%></a>
+                                    <%= radio_button_tag "option_type_#{option_type.id}",option_value.id, (params[:option_types] && params[:option_types][option_type.id.to_s] == option_value.id.to_s), :"data-has-same-product-image" => option_type.has_same_product_image%></li>
                                 <% end %>
                                 </ul>
                             <% end %>
-                        </li>
+                        </div>
                     <% end %>
-                </ul>
+                </div>
                 <ul id="product-variant-fields">
                     <% has_checked = false
                     @product.variants.active.each_with_index do |v,index|
@@ -59,16 +58,22 @@
                 </ul>
             </div>
         <% end%>
+
         <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
+        <div class="row clearfix">
+            <span class="label"><%= t('quantity')%></span>
             <%= select_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
-                options_for_select( (1..( Spree::Config[:allow_backorders] ? 10 : @product.on_hand ) ).to_a[0,10] ), :class => 'title'%>
-                &nbsp;
-                <%= button_tag :class => 'large primary', :id => 'add-to-cart-button' do %>
-                    <%= image_tag('icons/add-to-cart.png') + t(:add_to_cart) %>
-                <% end %>
-            <% else %>
-                <%= content_tag('strong', t(:out_of_stock)) %>
+                options_for_select( (1..( Spree::Config[:allow_backorders] ? 10 : @product.on_hand ) ).to_a[0,10] )%>
+        </div>
+        <% end %>
+        
+        <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
+            <%= button_tag :class => 'large primary', :id => 'add-to-cart-button' do %>
+                <%= image_tag('icons/add-to-cart.png') + t(:add_to_cart) %>
             <% end %>
+        <% else %>
+            <%= content_tag('strong', t(:out_of_stock)) %>
+        <% end %>
 
         </div>
     <% end %>

@@ -1,7 +1,7 @@
 <div class="hd clearfix">
     <ul class="clearfix">
         <li class="first"><strong><%=I18n.t("sort_by.sort_by")%></strong></li>
-        <li class="<%= (params[:order_by] == 'price.asc' )? 'current' : ''%>"><%= link_to  I18n.t("sort_by.price_asc"), :order_by => 'price.asc'%></li>
+        <li class="<%=  !['price.desc', 'available_on.desc'].include?(params[:order_by]) ? 'current' : ''%>"><%= link_to  I18n.t("sort_by.price_asc"), :order_by => 'price.asc'%></li>
         <li class="<%= (params[:order_by] == 'price.desc' )? 'current' : ''%>"><%= link_to I18n.t("sort_by.price_desc"), :order_by => 'price.desc'%></li>
         <li class="last <%= (params[:order_by] == 'available_on.desc' )? 'current' : ''%> "><%= link_to I18n.t('sort_by.available_desc'), :order_by => 'available_on.desc'%></li>
     </ul>
