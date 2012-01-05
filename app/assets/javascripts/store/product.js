@@ -108,7 +108,11 @@ $(function(){
             }
             $('#quantity').html(options)
         }else{
-            $('#quantity').html('<option value="0">請選擇商品</option>');
+            if($('body').is('zh-TW')){
+                $('#quantity').html('<option value="0">請選擇商品</option>');
+            }else{
+                $('#quantity').html('<option value="0">Select Product First</option>');
+            }
         }
 
         var sku = $("ul#product-variant-fields input[type=radio]:checked").data('sku');
