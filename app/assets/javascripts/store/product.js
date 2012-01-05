@@ -159,17 +159,17 @@ $(function(){
             $('#thumbnails .control-btn.next').removeClass('disabled');
         }
     }
+    if($('#product_option_types').length > 0){
+        $('#product_option_types input[type=radio]').on('click', update_ui);
+        $('#product_option_types a.radio-btn').on('click', function(){ $(this).next('input[type=radio]').prop('checked',true).trigger('click'); });
+        $('#product_option_types select').on('change', update_ui);
+        $("ul#product-variant-fields input[type=radio]").on('click', set_quantity_ui);
+        $('#product-thumbnails').bind('thumb-updated', update_thumb);
+        $('#thumbnails .control-btn.prev').bind('click', prev_page);
+        $('#thumbnails .control-btn.next').bind('click', next_page);
 
-    $('#product_option_types input[type=radio]').on('click', update_ui);
-    $('#product_option_types a.radio-btn').on('click', function(){ $(this).next('input[type=radio]').prop('checked',true).trigger('click'); });
-    $('#product_option_types select').on('change', update_ui);
-    $("ul#product-variant-fields input[type=radio]").on('click', set_quantity_ui);
-    $('#product-thumbnails').bind('thumb-updated', update_thumb);
-    $('#thumbnails .control-btn.prev').bind('click', prev_page);
-    $('#thumbnails .control-btn.next').bind('click', next_page);
-
-    add_image_handlers();
-    update_ui();
-    $('#product_option_types input[type=radio]').hide();
-
+        add_image_handlers();
+        update_ui();
+        $('#product_option_types input[type=radio]').hide();
+    }
 })
