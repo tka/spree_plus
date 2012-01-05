@@ -824,20 +824,24 @@ header .cart a:hover {
   padding: 40px 0 60px 0;
 }
 #container.has-sidebar {
-  background: white url('/assets/bg-container.png?1324383766') center top repeat-y;
   padding: 0;
 }
 #container.has-sidebar aside {
   display: inline;
   float: left;
+  border-right: 1px solid #ebebeb;
   padding: 40px 0 60px 0;
+  padding-right: 19px;
   width: 180px;
+  vertical-align: top;
 }
 #container.has-sidebar article, #container.has-sidebar #main {
   display: inline;
   float: right;
   padding: 40px 0 60px 0;
+  padding-left: 20px;
   width: 740px;
+  vertical-align: top;
 }
 
 .title, aside h3, .product-introduction h3, .cart-payment h3, .account-container h3 {
@@ -936,9 +940,11 @@ aside .category:last-child {
 .inventory .bd {
   border-bottom: 1px solid #ebebeb;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .inventory-thumb {
+  margin-right: -30px;
   width: 770px;
 }
 .inventory-thumb li {
@@ -1942,3 +1948,72 @@ footer .link a {
 footer .link a:hover {
   color: #6d8543;
 }
+
+/************************************************************************************
+smaller than 980
+*************************************************************************************/
+@media screen and (max-width: 980px) {
+  .inner {
+    width: 98%;
+  }
+
+  .has-sidebar aside {
+    width: 25%;
+  }
+  .has-sidebar article, .has-sidebar #main {
+    width: 75%;
+  }
+}
+/************************************************************************************
+smaller than 920
+*************************************************************************************/
+@media screen and (max-width: 920px) {
+  aside .category ul a {
+    background: url('/assets/blank.png?1325763917') no-repeat;
+    padding: 4px;
+  }
+  aside .category ul a:hover {
+    background-color: #f8f8f8;
+  }
+  aside .category ul .current a {
+    background: #72992f url('/assets/blank.png?1325763917') 8px center no-repeat;
+  }
+}
+/************************************************************************************
+smaller than 680
+*************************************************************************************/
+@media screen and (max-width: 740px) {
+  header .search {
+    margin-right: 20px;
+  }
+  header .search .text {
+    width: 100px;
+  }
+
+  #container.has-sidebar .inner {
+    display: block;
+  }
+  #container.has-sidebar aside {
+    display: block;
+    border-right: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+  #container.has-sidebar article, #container.has-sidebar #main {
+    display: block;
+    padding-left: 0;
+    width: 100%;
+  }
+}
+/************************************************************************************
+smaller than 651
+*************************************************************************************/
+/************************************************************************************
+smaller than 650
+*************************************************************************************/
+/************************************************************************************
+smaller than 480
+*************************************************************************************/
+/************************************************************************************
+smaller than 320
+*************************************************************************************/

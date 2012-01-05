@@ -27,13 +27,13 @@
 
             <div id="container" class="<%= sidebar_class %> <%= @container_class %> clearfix" data-hook>
                 <div class="inner">
+                    <%= flash_messages %>
+                    <%= yield %>
                     <% if content_for?(:sidebar) %>
-                        <aside id="sidebar" data-hook>
-                            <%= yield :sidebar %>
+                        <aside id="sidebar" class="column" data-hook>
+                        <%= yield :sidebar %>
                         </aside>
                     <% end %>
-                        <%= flash_messages %>
-                        <%= yield %>
                 </div>
             </div>
             
