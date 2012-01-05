@@ -7,12 +7,8 @@
 <section class="product-info clearfix">
 <div class="gallery">
     <div id="product-images" data-hook="product_images">
-        <div id="main-image" class="photo-wrapper" data-hook>
-            <%= render :partial => 'image' %>
-        </div>
-        <div id="thumbnails" data-hook>
-            <%= render :partial => 'thumbnails', :locals => { :product => @product } %>
-        </div>
+        <div id="main-image" class="photo-wrapper" data-hook><%= render :partial => 'image' -%></div>
+        <%= render :partial => 'thumbnails', :locals => { :product => @product } %>
     </div>
 </div>
 <div class="info">

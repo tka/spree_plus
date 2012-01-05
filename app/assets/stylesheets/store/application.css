@@ -1121,7 +1121,7 @@ aside .category:last-child {
   display: inline;
   float: left;
   background: #ebebeb;
-  padding: 5px 5px 10px;
+  padding: 5px;
   width: 250px;
 }
 .product-info .photo-wrapper {
@@ -1142,6 +1142,7 @@ aside .category:last-child {
 }
 .product-info .thumb-wrapper {
   position: relative;
+  margin-bottom: 5px;
   padding-left: 17px;
 }
 .product-info .thumb-wrapper .control-btn {
