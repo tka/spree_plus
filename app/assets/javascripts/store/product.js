@@ -59,6 +59,7 @@ $(function(){
                         }
                     });
                 }
+                continue;
             }
             var current_filter = "[data-" + input.name.replace(/_/g,'-')+"="+$(input).val()+"]";
             filter += current_filter 
@@ -81,10 +82,6 @@ $(function(){
         $("#main-image").data('selectedThumb', newImg);
         $("#main-image").data('selectedThumbId', thumb.attr('id'));
 
-        $("ul#product-variant-fields input[type=radio]").attr('checked', false);
-        if( $("ul#product-variant-fields input[type=radio]"+filter).length ==1 ){
-            $("ul#product-variant-fields input[type=radio]"+filter).trigger('click');
-        }
 
         $('ul.product_option_values li').removeClass('selected');
         $('ul.product_option_values li').each(function(){
@@ -92,7 +89,12 @@ $(function(){
                 $(this).addClass('selected');
             }
         })
-        
+        l(filter)
+        $("ul#product-variant-fields input[type=radio]").prop('checked', false);
+        if( $("ul#product-variant-fields input[type=radio]"+filter).length ==1 ){
+            $("ul#product-variant-fields input[type=radio]"+filter).trigger('click');
+        }
+
         set_quantity_ui();
         return false;
     }
