@@ -1,3 +1,3 @@
 /*
-*= require equalheight
+*= require store/equalheight
 */

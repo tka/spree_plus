@@ -62,3 +62,20 @@ $(window).resize(function() {
 $(function() {
 	columnConform();
 });
+
+
+// http://www.cssnewbie.com/equalheights-jquery-plugin/
+
+function equalHeight(group) {
+   tallest = 0;
+   group.each(function() {
+      thisHeight = $(this).height();
+      if(thisHeight > tallest) {
+         tallest = thisHeight;
+      }
+   });
+   group.height(tallest);
+}
+$(document).ready(function() {
+   equalHeight($(".column"));
+});
