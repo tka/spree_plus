@@ -7,7 +7,7 @@
 <section class="product-info clearfix">
 <div class="gallery">
     <div id="product-images" data-hook="product_images">
-        <div id="main-image" data-hook>
+        <div id="main-image" class="photo-wrapper" data-hook>
             <%= render :partial => 'image' %>
         </div>
         <div id="thumbnails" data-hook>
@@ -19,7 +19,7 @@
     <div class="hd">
         <h2 class="product-title"><%= accurate_title %></h2>
         <%= render_cell :product, :labels, :product => @product%>
-        <div class="row clearfix"><span class="label">商品編號</span><%= @product.sku%></div>
+        <div class="row clearfix"><span class="label">商品編號</span><span id="sku" data-product-sku="<%=@product.sku%>"><%= @product.sku%></span></div>
     </div>
     <%= render :partial => 'cart_form' %>
 </div>

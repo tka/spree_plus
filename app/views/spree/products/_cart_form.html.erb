@@ -42,7 +42,7 @@
                         checked = !has_checked && (v.in_stock || Spree::Config[:allow_backorders])
                         has_checked = true if checked %>
                         <li>
-                            <%=raw radio_button_tag( "products[#{@product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders], :"data-on-hand" => v.on_hand).gsub(/>$/, variant_option_values_data(v)+">") %>
+                            <%=raw radio_button_tag( "products[#{@product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders], :"data-on-hand" => v.on_hand, :"data-sku" => v.sku ).gsub(/\/>$/, variant_option_values_data(v)+"/>") %>
                             <label for="<%= ['products', @product.id, v.id].join('_') %>">
                                 <span class="variant-description">
                                     <%= variant_options v %>

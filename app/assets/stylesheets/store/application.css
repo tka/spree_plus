@@ -1269,8 +1269,9 @@ aside .category:last-child {
 .product-info .size a {
   display: inline-block;
   background: #f8f8f8;
-  width: 42px;
   height: 16px;
+  padding:0 6px;
+  min-width:30px;
   font-size: 12px;
   font-weight: bold;
   color: #555;

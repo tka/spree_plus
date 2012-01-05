@@ -25,7 +25,7 @@
             </header>
             <%= spreeplus_breadcrumbs(@taxon || (@product && @product.taxons.first)) %>
 
-            <div id="container" class="has-sidebar clearfix" data-hook>
+            <div id="container" class="<%= sidebar_class %> <%= @container_class %> clearfix" data-hook>
                 <div class="inner">
                     <% if content_for?(:sidebar) %>
                         <aside id="sidebar" data-hook>

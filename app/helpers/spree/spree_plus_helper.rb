@@ -17,5 +17,9 @@ module Spree
           :id => 'breadcrumbs')
 
     end
+
+    def sidebar_class
+      content_for?(:sidebar) ? 'has-sidebar' : ''
+    end
   end
 end

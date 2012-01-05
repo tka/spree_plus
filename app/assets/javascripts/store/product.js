@@ -14,12 +14,14 @@ $(function(){
             }); 
             return false;
         }); 
-        $('ul.thumbnails').delegate('li', 'mouseenter', function(event) {
+        $('ul.thumbnails li').on('mouseenter', function(event) {
             $('#main-image img').attr('src', $(event.currentTarget).find('a').attr('href'));
         }); 
-        $('ul.thumbnails').delegate('li', 'mouseleave', function(event) {
+        /*
+        $('ul.thumbnails li').on('mouseleave', function(event) {
             $('#main-image img').attr('src', $("#main-image").data('selectedThumb'));
-        }); 
+        });
+        */
         
     };
 
@@ -67,15 +69,20 @@ $(function(){
             }
 
         }
-        $('#product-thumbnails li').hide();
-        $('#product-thumbnails li.tmb-all').show();
-        $('#product-thumbnails li'+img_filter).show();
+        $('#product-thumbnails-origin li').removeClass('selected');
+        $('#product-thumbnails-origin li.tmb-all').addClass('selected');
+        $('#product-thumbnails-origin li'+img_filter).addClass('selected');
+        $('#product-thumbnails').data('offset', 0);
+        $('#product-thumbnails').trigger('thumb-updated');
 
-        var thumb = $($('ul.thumbnails li:visible').eq(0));
+
+        var thumb = $($('#product-thumbnails li:visible').eq(0));
         var newImg = thumb.find('a').attr('href');
         $('#main-image img').attr('src', newImg);
+        $('#main-image a').attr('href', newImg.replace('/product/','/large/'));
         $("#main-image").data('selectedThumb', newImg);
         $("#main-image").data('selectedThumbId', thumb.attr('id'));
+
         $("ul#product-variant-fields input[type=radio]").attr('checked', false);
         if( $("ul#product-variant-fields input[type=radio]"+filter).length ==1 ){
             $("ul#product-variant-fields input[type=radio]"+filter).trigger('click');
@@ -94,6 +101,7 @@ $(function(){
     
     var set_quantity_ui = function(){
         var on_hand = $("ul#product-variant-fields input[type=radio]:checked").data('on-hand');
+
         if(typeof(on_hand) != "undefined" && parseInt(on_hand, 10) >0 ){
             on_hand = parseInt(on_hand, 10);
             var options="";
@@ -104,12 +112,62 @@ $(function(){
         }else{
             $('#quantity').html('<option value="0">請選擇商品</option>');
         }
+
+        var sku = $("ul#product-variant-fields input[type=radio]:checked").data('sku');
+        if(typeof(sku) != "undefined" ){
+            $('#sku').html(sku);
+        }else{
+            $('#sku').html( $('#sku').data('product-sku') );
+        }
+    }
+
+    function prev_page(){
+        var $thumbs=$('#product-thumbnails');
+        var offset = $thumbs.data('offset');
+        var total_length = $('#product-thumbnails-origin li.selected').length
+        if(offset > 0){
+            $thumbs.data('offset', offset-4)
+            $('#product-thumbnails').trigger('thumb-updated');
+        }
+    }
+   
+   function next_page(){
+        var $thumbs=$('#product-thumbnails');
+        var offset = $thumbs.data('offset');
+        var total_length = $('#product-thumbnails-origin li.selected').length
+        if(offset < total_length-4){
+            $thumbs.data('offset', offset+4)
+            $('#product-thumbnails').trigger('thumb-updated');
+        }
+    }
+
+    function update_thumb(){
+        var $thumbs=$('#product-thumbnails');
+        var offset = $thumbs.data('offset');
+        var total_length = $('#product-thumbnails-origin li.selected').length;
+        $thumbs.html('')
+        $('#product-thumbnails-origin li.selected:gt('+ offset +'):lt('+ (offset+4)+')').each(function(index){
+            if(index < 4){
+                $('#product-thumbnails').append($(this).clone());
+            }
+        });
+        $('#thumbnails .control-btn').addClass('disabled');
+        if(offset > 0 ){
+            $('#thumbnails .control-btn.prev').removeClass('disabled');
+        }
+        if(offset <  total_length-4){
+            $('#thumbnails .control-btn.next').removeClass('disabled');
+        }
     }
 
     $('#product_option_types input[type=radio]').on('click', update_ui);
     $('#product_option_types a.radio-btn').on('click', function(){ $(this).next('input[type=radio]').prop('checked',true).trigger('click'); });
     $('#product_option_types select').on('change', update_ui);
     $("ul#product-variant-fields input[type=radio]").on('click', set_quantity_ui);
+    $('#product-thumbnails').bind('thumb-updated', update_thumb);
+    $('#thumbnails .control-btn.prev').bind('click', prev_page);
+    $('#thumbnails .control-btn.next').bind('click', next_page);
+
     add_image_handlers();
     update_ui();
     $('#product_option_types input[type=radio]').hide();

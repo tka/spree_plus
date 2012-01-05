@@ -1,6 +1,10 @@
 /*
  *= require store/application
-*/
+ */
 #product-variant-fields{
   display: none;
-  }
+}
+
+#product-thumbnails-origin{
+  display: none;
+}

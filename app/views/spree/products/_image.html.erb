@@ -1,5 +1,9 @@
-<% if image %> 
-  <%= image_tag image.attachment.url(:product) %>
+<% if image %>
+    <a href="<%= image.attachment.url(:large) %>">
+        <span></span>
+        <%= image_tag image.attachment.url(:product) %>
+    </a>
 <% else %>
-  <%= product_image(@product) %>
+    <a href="javascript:;"><span></span><%= product_image(@product) %></a>
 <% end %>
+</a>

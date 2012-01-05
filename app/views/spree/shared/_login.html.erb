@@ -1,0 +1,26 @@
+<%= form_for :user, :url => spree.user_session_path, :class => "custom-form" do |f| %>
+    <div id="password-credentials">
+        <div class="field">
+                                    <label class="desc">E-mail</label>
+                                                            <div class="col"><input type="text" class="text" size="30"></div>
+                                                                                </div>
+    <div class="field">
+        <%= f.label :email, t(:email), :class => 'desc' %>
+         <div class="col">
+             <%= f.email_field :email, :class => 'title' %>
+         </div>
+    </div>
+    <p>
+      <%= f.label :password, t(:password) %><br />
+      <%= f.password_field :password, :class => 'title' %>
+    </p>
+  </div>
+  <p>
+    <label>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, t(:remember_me) %>
+    </label>
+  </p>
+
+  <p><%= f.submit t(:log_in), :class => 'button primary' %></p>
+<% end %>
