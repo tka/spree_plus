@@ -2,6 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* normalize.css 2011-07-12T10:51 UTC http://github.com/necolas/normalize.css */
 /* =============================================================================
 HTML5 element display
 ========================================================================== */
@@ -615,7 +616,7 @@ a:hover, a:active {
 }
 
 /* new clearfix */
-.clearfix:after, .inventory-list li:after, .order-form .field:after {
+.clearfix:after, .inventory-list li:after, .custom-form .field:after {
   visibility: hidden;
   display: block;
   font-size: 0;
@@ -624,12 +625,12 @@ a:hover, a:active {
   height: 0;
 }
 
-* html .clearfix, * html .inventory-list li, .inventory-list * html li, * html .order-form .field, .order-form * html .field {
+* html .clearfix, * html .inventory-list li, .inventory-list * html li, * html .custom-form .field, .custom-form * html .field {
   zoom: 1;
 }
 
 /* IE6 */
-*:first-child + html .clearfix, *:first-child + html .inventory-list li, .inventory-list *:first-child + html li, *:first-child + html .order-form .field, .order-form *:first-child + html .field {
+*:first-child + html .clearfix, *:first-child + html .inventory-list li, .inventory-list *:first-child + html li, *:first-child + html .custom-form .field, .custom-form *:first-child + html .field {
   zoom: 1;
 }
 
@@ -674,11 +675,11 @@ header {
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 2px inset;
   -o-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 2px inset;
   box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 2px inset;
-  background: #cb7722 url('/assets/bg-header.png?1325060102') 0 0 repeat;
+  background: #cb7722 url('/assets/bg-header.png?1324379519') 0 0 repeat;
   height: 60px;
 }
 header h1 {
-  background: url('/assets/h1.png?1325060102') no-repeat;
+  background: url('/assets/h1.png?1324362306') no-repeat;
   margin: 0;
   width: 214px;
   height: 64px;
@@ -782,11 +783,11 @@ header .cart a:hover {
 /* `Breadcrumbs
 -----------------------------------------------------------------------------*/
 #breadcrumbs {
-  background: white url('/assets/bg-breadcrumbs.png?1325060102') 0 0 repeat-x;
+  background: white url('/assets/bg-breadcrumbs.png?1324362731') 0 0 repeat-x;
   border-bottom: 1px solid #ebebeb;
 }
 #breadcrumbs ul li {
-  background: url('/assets/breadcrumbs-dotted.png?1325060102') left center no-repeat;
+  background: url('/assets/breadcrumbs-dotted.png?1324381081') left center no-repeat;
   padding: 0 12px;
   font-size: 13px;
   color: #999;
@@ -823,7 +824,7 @@ header .cart a:hover {
   padding: 40px 0 60px 0;
 }
 #container.has-sidebar {
-  background: white url('/assets/bg-container.png?1325060102') center top repeat-y;
+  background: white url('/assets/bg-container.png?1324383766') center top repeat-y;
   padding: 0;
 }
 #container.has-sidebar aside {
@@ -855,7 +856,7 @@ aside .category ul li {
 }
 aside .category ul a {
   display: block;
-  background: url('/assets/arrow-category.png?1325060102') 8px center no-repeat;
+  background: url('/assets/arrow-category.png?1324385483') 8px center no-repeat;
   border-bottom: 1px solid #ebebeb;
   padding: 4px 0 4px 25px;
   color: #a77746;
@@ -865,7 +866,7 @@ aside .category ul a:hover {
   color: #cb7722;
 }
 aside .category ul .current a {
-  background: #72992f url('/assets/arrow-category-hover.png?1325060102') 8px center no-repeat;
+  background: #72992f url('/assets/arrow-category-hover.png?1324385514') 8px center no-repeat;
   color: #fff;
   cursor: default;
 }
@@ -1134,7 +1135,7 @@ aside .category:last-child {
   height: 250px;
 }
 .product-info .photo-wrapper a:hover span {
-  background: url('/assets/icon-magnifier.png?1325060102') center center no-repeat;
+  background: url('/assets/icon-magnifier.png?1324442851') center center no-repeat;
   display: block;
   width: 250px;
   height: 250px;
@@ -1209,19 +1210,19 @@ aside .category:last-child {
   color: #fff;
 }
 .product-info .tags li.red {
-  background: #c76855 url('/assets/tags/red.png?1325060102') right top no-repeat;
+  background: #c76855 url('/assets/tags/red.png?1324452178') right top no-repeat;
 }
 .product-info .tags li.blue {
-  background: #5093be url('/assets/tags/blue.png?1325060102') right top no-repeat;
+  background: #5093be url('/assets/tags/blue.png?1324452188') right top no-repeat;
 }
 .product-info .tags li.green {
-  background: #919b4e url('/assets/tags/green.png?1325060102') right top no-repeat;
+  background: #919b4e url('/assets/tags/green.png?1324452237') right top no-repeat;
 }
 .product-info .tags li.orange {
-  background: #b17527 url('/assets/tags/orange.png?1325060102') right top no-repeat;
+  background: #b17527 url('/assets/tags/orange.png?1324452227') right top no-repeat;
 }
 .product-info .tags li.purple {
-  background: #6059c8 url('/assets/tags/purple.png?1325060102') right top no-repeat;
+  background: #6059c8 url('/assets/tags/purple.png?1324452202') right top no-repeat;
 }
 .product-info .bd {
   margin-bottom: 20px;
@@ -1270,9 +1271,9 @@ aside .category:last-child {
 .product-info .size a {
   display: inline-block;
   background: #f8f8f8;
+  padding: 0 6px;
+  min-width: 30px;
   height: 16px;
-  padding:0 6px;
-  min-width:30px;
   font-size: 12px;
   font-weight: bold;
   color: #555;
@@ -1288,7 +1289,7 @@ aside .category:last-child {
   cursor: default;
 }
 .product-info .selected a span {
-  background: url('/assets/selected.png?1325060102') 0 0 no-repeat;
+  background: url('/assets/selected.png?1324537821') 0 0 no-repeat;
   width: 12px;
   height: 12px;
   position: absolute;
@@ -1303,20 +1304,20 @@ aside .category:last-child {
 .product-info .ft .button, .product-info .ft .button-green, .product-info .ft .button-orange, .product-info .ft .button-gray {
   color: #fff;
   position: relative;
-  padding: 0 30px 0 60px;
+  padding: 0 25px 0 15px;
 }
 .product-info .ft .button span, .product-info .ft .button-green span, .product-info .ft .button-orange span, .product-info .ft .button-gray span {
+  display: inline;
+  float: left;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 1px 0 0;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 0 0;
   -o-box-shadow: rgba(0, 0, 0, 0.1) 1px 0 0;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 0 0;
   background: url('/assets/icons-s37f3021c17.png') 0 -61px no-repeat;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  margin-right: 10px;
   width: 33px;
   height: 40px;
-  position: absolute;
-  left: 17px;
-  top: 0;
 }
 .product-info .ft .legend {
   display: inline;
@@ -1561,7 +1562,7 @@ aside .category:last-child {
   margin-bottom: 40px;
 }
 .step ul li {
-  background: url('/assets/step-menu.png?1325060102') right top no-repeat;
+  background: url('/assets/step-menu.png?1324983807') right top no-repeat;
   padding: 0 35px 0 25px;
   height: 40px;
   line-height: 40px;
@@ -1571,13 +1572,13 @@ aside .category:last-child {
   color: #fff;
 }
 .step ul li.current {
-  background: #72992f url('/assets/step-menu.png?1325060102') right -40px no-repeat;
+  background: #72992f url('/assets/step-menu.png?1324983807') right -40px no-repeat;
 }
 .step ul li.last-done {
-  background: #505050 url('/assets/step-menu.png?1325060102') right -80px no-repeat;
+  background: #505050 url('/assets/step-menu.png?1324983807') right -80px no-repeat;
 }
 .step ul li.done {
-  background: #505050 url('/assets/step-menu.png?1325060102') right bottom no-repeat;
+  background: #505050 url('/assets/step-menu.png?1324983807') right bottom no-repeat;
 }
 .step ul li:first-child {
   -moz-border-radius: 3px 0 0 3px;
@@ -1722,37 +1723,40 @@ aside .category:last-child {
   color: #72992f;
 }
 
-.order-form .field {
+.custom-form .field {
   border-bottom: 1px dotted #ebebeb;
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
-.order-form .field .col {
+.custom-form .field .col {
   display: inline;
   float: left;
   width: 86%;
 }
-.order-form .field:last-child {
+.custom-form .field .col.remember {
+  margin-left: 14%;
+}
+.custom-form .field:last-child {
   border-bottom: 0;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.order-form .field .note {
+.custom-form .field .note {
   padding-left: 5px;
   font-size: 13px;
   color: #777;
 }
-.order-form label.desc {
+.custom-form label.desc {
   display: inline;
   float: left;
   margin-right: 2%;
   width: 12%;
   text-align: right;
 }
-.order-form .button-area {
+.custom-form .button-area {
   text-align: left;
 }
-.order-form .button-area .submit {
+.custom-form .button-area .submit {
   float: none;
 }
 
@@ -1771,7 +1775,7 @@ aside .category:last-child {
   vertical-align: middle;
 }
 .payment-section .credit-card {
-  background: url('/assets/credit-card-verification.png?1325221083') 540px 30px no-repeat;
+  background: url('/assets/credit-card-verification.png?1325077818') 540px 30px no-repeat;
   border-top: 1px solid #ebebeb;
   margin-top: 30px;
   padding: 30px 400px 0 0;
@@ -1789,12 +1793,15 @@ aside .category:last-child {
   margin-top: 40px;
   padding: 20px;
 }
+.payment-instructions li {
+  margin-bottom: 10px;
+}
+.payment-instructions .important {
+  color: #cc3d26;
+}
 
 /* `Account
 -----------------------------------------------------------------------------*/
-.account-container section {
-  margin-bottom: 30px;
-}
 .account-container .tabs {
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 30px;
@@ -1821,7 +1828,8 @@ aside .category:last-child {
   color: #555;
 }
 .account-container .tabs a:hover {
-  background: #777;
+  background: #5b5b5b;
+  border-bottom: 1px solid #5b5b5b;
   color: #fff;
 }
 .account-container .tabs .current a {
@@ -1843,6 +1851,19 @@ aside .category:last-child {
 .account-container .list-of-items .payment-status {
   width: 180px;
 }
+.account-container .custom-form {
+  padding-top: 40px;
+}
+.account-container .custom-form .field {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+.account-container .custom-form .button-area {
+  padding-left: 14%;
+}
+.account-container .custom-form .button-area .submit {
+  margin-right: 20px;
+}
 
 /* `Stickies
 -----------------------------------------------------------------------------*/
@@ -1862,15 +1883,15 @@ aside .category:last-child {
   line-height: 1.2;
 }
 .stickies .notice-stickie {
-  background: #daf1af url('/assets/bg-stickie.png?1325060102') left top repeat-x;
+  background: #daf1af url('/assets/bg-stickie.png?1324961843') left top repeat-x;
   border: 1px solid #b0d861;
 }
 .stickies .error-stickie {
-  background: #f1b6af url('/assets/bg-stickie.png?1325060102') left top repeat-x;
+  background: #f1b6af url('/assets/bg-stickie.png?1324961843') left top repeat-x;
   border: 1px solid #d86d61;
 }
 .stickies .warning-stickie {
-  background: #f1eaaf url('/assets/bg-stickie.png?1325060102') left top repeat-x;
+  background: #f1eaaf url('/assets/bg-stickie.png?1324961843') left top repeat-x;
   border: 1px solid #d8ca61;
 }
 .stickies .stickies-close {
