@@ -16,9 +16,11 @@ $(function(){
         }); 
         $('ul.thumbnails li').on('mouseenter', function(event) {
             $('#main-image img').attr('src', $(event.currentTarget).find('a').attr('href'));
+            $('#main-image a').attr('href', $('#main-image img').attr('src').replace('/product/','/large/'));
         }); 
         $('ul.thumbnails li').on('mouseleave', function(event) {
             $('#main-image img').attr('src', $("#main-image").data('selectedThumb'));
+            $('#main-image a').attr('href', $('#main-image img').attr('src').replace('/product/','/large/'));
         });
         
     };
@@ -78,7 +80,7 @@ $(function(){
         var thumb = $($('#product-thumbnails li').eq(0));
         var newImg = thumb.find('a').attr('href');
         $('#main-image img').attr('src', newImg);
-        $('#main-image a').attr('href', $('#main-image a').attr('href').replace('/product/','/large/'));
+        $('#main-image a').attr('href', $('#main-image img').attr('src').replace('/product/','/large/'));
         $("#main-image").data('selectedThumb', newImg);
         $("#main-image").data('selectedThumbId', thumb.attr('id'));
 
